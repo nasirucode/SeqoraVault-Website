@@ -76,14 +76,6 @@ export function Header() {
           >
             Pricing
           </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              `navLink${isActive ? ' navLink--active' : ''}`
-            }
-          >
-            Contact
-          </NavLink>
           {isHome ? (
             <a className="navLink" href="#security">
               Security
@@ -181,15 +173,6 @@ export function Header() {
               onClick={() => setMenuOpen(false)}
             >
               Pricing
-            </NavLink>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                `headerMenuLink${isActive ? ' headerMenuLink--active' : ''}`
-              }
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
             </NavLink>
             {isHome ? (
               <a className="headerMenuLink" href="#security" onClick={() => setMenuOpen(false)}>

@@ -8,7 +8,7 @@
 
 .contactHero {
   position: relative;
-  padding: clamp(40px, 7vw, 72px) 0 clamp(36px, 5vw, 56px);
+  padding: clamp(48px, 9vw, 88px) 0 clamp(40px, 6vw, 60px);
   overflow: hidden;
 }
 
@@ -42,7 +42,10 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  text-align: left;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .contactEyebrow {
@@ -68,7 +71,8 @@
 }
 
 .contactLead {
-  margin: 16px 0 0;
+  margin: 16px auto 0;
+  max-width: 52ch;
   font-size: 17px;
   line-height: 1.6;
   color: rgba(91, 100, 116, 0.92);
@@ -77,7 +81,8 @@
 }
 
 .contactFormSection {
-  padding-bottom: 40px;
+  padding-top: 12px;
+  padding-bottom: 48px;
 }
 
 .contactGrid {
@@ -281,6 +286,18 @@
 
   .contactSubmit:hover {
     transform: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .contactHero {
+    padding-top: clamp(36px, 10vw, 56px);
+    padding-bottom: clamp(32px, 8vw, 48px);
+  }
+
+  .contactFormSection {
+    padding-top: 20px;
+    padding-bottom: 40px;
   }
 }
 
