@@ -32,6 +32,7 @@
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 html {
@@ -48,6 +49,7 @@ body {
 
 #root {
   min-height: 100svh;
+  overflow-x: clip;
 }
 
 a {

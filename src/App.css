@@ -161,7 +161,8 @@
 .headerMenuShell {
   position: fixed;
   inset: 0;
-  z-index: 55;
+  /* Must overlay all page sections (some create stacking contexts) */
+  z-index: 9999;
   pointer-events: none;
   visibility: hidden;
 }
@@ -178,9 +179,12 @@
   padding: 0;
   margin: 0;
   cursor: pointer;
-  background: rgba(15, 23, 42, 0.42);
+  background:
+    radial-gradient(900px 520px at 70% 10%, rgba(210, 173, 73, 0.12), transparent 60%),
+    rgba(9, 12, 20, 0.58);
+  backdrop-filter: blur(6px);
   opacity: 0;
-  transition: opacity 240ms ease;
+  transition: opacity 220ms ease;
 }
 
 .headerMenuShell--open .headerMenuBackdrop {
@@ -189,18 +193,25 @@
 
 .headerMenuPanel {
   position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: min(100%, 340px);
+  top: max(10px, env(safe-area-inset-top, 0px));
+  right: max(10px, env(safe-area-inset-right, 0px));
+  bottom: max(10px, env(safe-area-inset-bottom, 0px));
+  width: min(92vw, 360px);
   max-width: 100vw;
-  background: #fff;
-  box-shadow: -16px 0 48px rgba(15, 23, 42, 0.18);
-  transform: translateX(100%);
-  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  background:
+    radial-gradient(600px 320px at 20% 0%, rgba(210, 173, 73, 0.16), transparent 58%),
+    rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(16, 24, 40, 0.12);
+  border-radius: 22px;
+  box-shadow:
+    -18px 0 60px rgba(9, 12, 20, 0.24),
+    0 14px 40px rgba(16, 24, 40, 0.14);
+  transform: translateX(110%);
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   flex-direction: column;
-  padding: 0 0 env(safe-area-inset-bottom, 0);
+  overflow: hidden;
+  padding: 0;
 }
 
 .headerMenuShell--open .headerMenuPanel {
@@ -212,8 +223,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 18px 18px 14px;
+  padding: 18px 18px 16px;
   border-bottom: 1px solid rgba(16, 24, 40, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
 }
 
 .headerMenuTitle {
@@ -233,46 +246,54 @@
   padding: 0;
   border: none;
   border-radius: 10px;
-  background: rgba(16, 24, 40, 0.06);
+  background: rgba(16, 24, 40, 0.07);
   color: var(--text-strong);
   cursor: pointer;
   transition: background 160ms ease;
 }
 
 .headerMenuClose:hover {
-  background: rgba(16, 24, 40, 0.1);
+  background: rgba(16, 24, 40, 0.12);
 }
 
 .headerMenuNav {
   display: flex;
   flex-direction: column;
-  padding: 16px 14px 28px;
-  gap: 4px;
+  padding: 14px 12px 16px;
+  gap: 6px;
   overflow-y: auto;
 }
 
 .headerMenuLink {
   display: block;
   padding: 14px 14px;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 15px;
   font-weight: 650;
-  color: rgba(45, 50, 80, 0.88);
+  color: rgba(45, 50, 80, 0.9);
   text-decoration: none;
   transition:
     background 160ms ease,
-    color 160ms ease;
+    color 160ms ease,
+    transform 160ms ease,
+    box-shadow 180ms ease;
 }
 
 .headerMenuLink:hover {
   background: rgba(45, 50, 80, 0.06);
   color: var(--text-strong);
+  transform: translateY(-1px);
 }
 
 .headerMenuLink--active {
-  background: rgba(45, 50, 80, 0.08);
+  background: linear-gradient(
+    180deg,
+    rgba(45, 50, 80, 0.1) 0%,
+    rgba(45, 50, 80, 0.06) 100%
+  );
   color: var(--text-strong);
   font-weight: 800;
+  box-shadow: 0 10px 22px rgba(16, 24, 40, 0.08);
 }
 
 @media (prefers-reduced-motion: reduce) {
