@@ -10,7 +10,7 @@ const PLANS = [
   {
     key: 'personal',
     name: 'Personal',
-    price: '$7.99/year',
+    price: '$95.88/year',
     description: 'For individuals who want to get started.',
     highlighted: false,
     icon: User,
@@ -19,11 +19,11 @@ const PLANS = [
   {
     key: 'family',
     name: 'Family',
-    price: '$14.99/year',
+    price: '$179.88/year',
     description: 'For a family of three (3).',
     highlighted: true,
     icon: Users,
-    features: ['6 vaults, up to 6 nominee', 'Proof of life engine'],
+    features: ['6 vaults, up to 6 nominee', 'Shared family access', 'Proof of life engine'],
   },
   {
     key: 'lifetime',
@@ -35,7 +35,6 @@ const PLANS = [
     features: [
       '6 vaults, up to 6 nominee',
       'Proof of life engine',
-      'Shared family access',
       'One-time payment',
     ],
   },
