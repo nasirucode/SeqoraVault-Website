@@ -116,6 +116,14 @@ export function Header() {
                     Security
                   </Link>
                 )}
+
+                <Link
+                  className="headerMenuCta"
+                  to="/contact"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Contact us
+                </Link>
               </nav>
             </div>
           </div>,
@@ -199,6 +207,26 @@ export function Header() {
         </div>
       </div>
       </header>
+      <Link
+        className="headerInfoBar"
+        to="/contact"
+        onClick={() => setMenuOpen(false)}
+        aria-label="Coming soon — join waiting list"
+      >
+        <span className="headerInfoBarInner">
+          <span className="headerInfoPill" aria-hidden="true">
+            Coming soon
+          </span>
+          <span className="headerInfoText">Join the waiting list</span>
+          <span className="headerInfoSep" aria-hidden="true">
+            ·
+          </span>
+          <span className="headerInfoNote">First 500 subscribers get lifetime access</span>
+          <span className="headerInfoArrow" aria-hidden="true">
+            →
+          </span>
+        </span>
+      </Link>
       {menuOverlay}
     </>
   )
