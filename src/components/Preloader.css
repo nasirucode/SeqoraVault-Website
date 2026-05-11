@@ -21,6 +21,11 @@
   pointer-events: none;
 }
 
+/** Route-transition overlay (must sit above header drawer & cookie bar). */
+.preloader.preloader--navigation {
+  z-index: 12000;
+}
+
 .preloaderInner {
   width: min(300px, 88vw);
   padding: 26px 24px 22px;

@@ -104,7 +104,58 @@
   animation: contactFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
 }
 
+.contactHoneypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.contactError {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #8b1538;
+  background: rgba(220, 53, 69, 0.08);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.contactOptionalMark {
+  font-weight: 600;
+  color: rgba(45, 50, 80, 0.45);
+}
+
+.contactSuccessBlock {
+  display: grid;
+  gap: 16px;
+}
+
+.contactSubmit:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.contactSubmit--secondary {
+  margin-top: 0;
+  background: rgba(45, 50, 80, 0.08);
+  color: var(--text-strong);
+  box-shadow: none;
+}
+
+.contactSubmit--secondary:hover {
+  background: rgba(45, 50, 80, 0.12);
+}
+
 .contactFields {
+  position: relative;
   display: grid;
   gap: 18px;
 }
@@ -118,6 +169,7 @@
 }
 
 .contactInput,
+.contactSelect,
 .contactTextarea {
   width: 100%;
   padding: 12px 14px;
@@ -133,7 +185,13 @@
     transform 0.2s ease;
 }
 
+.contactSelect {
+  cursor: pointer;
+  min-height: 46px;
+}
+
 .contactInput:focus,
+.contactSelect:focus,
 .contactTextarea:focus {
   outline: none;
   border-color: rgba(45, 50, 80, 0.35);

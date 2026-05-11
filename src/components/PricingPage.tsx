@@ -1,10 +1,11 @@
+'use client'
+
 import { Check, Infinity, User, Users } from 'lucide-react'
-import { DownloadSection } from '../components/DownloadSection'
-import { usePreloaderReady } from '../components/Preloader'
-import { FaqSection } from '../components/FaqSection'
-import { Footer } from '../components/Footer'
-import { Header } from '../components/Header'
-import '../App.css'
+import { DownloadSection } from '@/components/DownloadSection'
+import { usePreloaderReady } from '@/components/Preloader'
+import { FaqSection } from '@/components/FaqSection'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
 
 const PLANS = [
   {
@@ -88,8 +89,8 @@ export function PricingPage() {
                       Start for free
                     </a>
                     <ul className="pricingCardFeatures">
-                      {plan.features.map((line) => (
-                        <li key={line} className="pricingCardFeature">
+                      {plan.features.map((line, i) => (
+                        <li key={`${plan.key}-${i}`} className="pricingCardFeature">
                           <span className="pricingCardCheckBadge" aria-hidden="true">
                             <Check
                               className="pricingCardCheckIcon"

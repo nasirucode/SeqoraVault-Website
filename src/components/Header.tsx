@@ -1,17 +1,27 @@
+'use client'
+
 import { useEffect, useId, useState } from 'react'
+import { useIsClient } from '@/hooks/useIsClient'
 import { createPortal } from 'react-dom'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import logo from '../assets/seqoravault-logo.svg'
+import { isHomePath, sectionLink } from '@/lib/site'
+import logo from '@/assets/seqoravault-logo.svg'
 
 /** Site-wide navigation — use on every page with `<Header />`. */
 export function Header() {
-  const { pathname } = useLocation()
-  const isHome = pathname === '/'
+  const pathname = usePathname() ?? '/'
+  const isHome = isHomePath(pathname)
   const [menuOpen, setMenuOpen] = useState(false)
+  /** Same tree during SSR + hydration; portal mounts only after client takeover (`useSyncExternalStore`). */
+  const portalReady = useIsClient()
   const menuId = useId()
 
+  const closeMenu = () => setMenuOpen(false)
+
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reset drawer when navigating
     setMenuOpen(false)
   }, [pathname])
 
@@ -25,17 +35,16 @@ export function Header() {
   }, [menuOpen])
 
   useEffect(() => {
-    if (menuOpen) {
-      const prev = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
-      return () => {
-        document.body.style.overflow = prev
-      }
+    if (!menuOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
     }
   }, [menuOpen])
 
   const menuOverlay =
-    typeof document !== 'undefined'
+    portalReady
       ? createPortal(
           <div
             className={`headerMenuShell${menuOpen ? ' headerMenuShell--open' : ''}`}
@@ -68,59 +77,59 @@ export function Header() {
               </div>
               <nav className="headerMenuNav" aria-label="Primary mobile">
                 {!isHome ? (
-                  <Link className="headerMenuLink" to="/" onClick={() => setMenuOpen(false)}>
+                  <Link
+                    className="headerMenuLink"
+                    href="/"
+                    prefetch
+                    onPointerDown={closeMenu}
+                    onClick={closeMenu}
+                  >
                     Home
                   </Link>
                 ) : null}
-                {isHome ? (
-                  <a className="headerMenuLink" href="#features" onClick={() => setMenuOpen(false)}>
-                    Features
-                  </a>
-                ) : (
-                  <Link
-                    className="headerMenuLink"
-                    to="/#features"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Features
-                  </Link>
-                )}
-                {isHome ? (
-                  <a className="headerMenuLink" href="#vaults" onClick={() => setMenuOpen(false)}>
-                    Vaults
-                  </a>
-                ) : (
-                  <Link className="headerMenuLink" to="/#vaults" onClick={() => setMenuOpen(false)}>
-                    Vaults
-                  </Link>
-                )}
-                <NavLink
-                  to="/pricing"
-                  className={({ isActive }) =>
-                    `headerMenuLink${isActive ? ' headerMenuLink--active' : ''}`
-                  }
-                  onClick={() => setMenuOpen(false)}
+                <Link
+                  className="headerMenuLink"
+                  href={sectionLink('features', isHome)}
+                  prefetch
+                  onPointerDown={closeMenu}
+                  onClick={closeMenu}
+                >
+                  Features
+                </Link>
+                <Link
+                  className="headerMenuLink"
+                  href={sectionLink('vaults', isHome)}
+                  prefetch
+                  onPointerDown={closeMenu}
+                  onClick={closeMenu}
+                >
+                  Vaults
+                </Link>
+                <Link
+                  className={`headerMenuLink${pathname === '/pricing' ? ' headerMenuLink--active' : ''}`}
+                  href="/pricing"
+                  prefetch
+                  onPointerDown={closeMenu}
+                  onClick={closeMenu}
                 >
                   Pricing
-                </NavLink>
-                {isHome ? (
-                  <a className="headerMenuLink" href="#security" onClick={() => setMenuOpen(false)}>
-                    Security
-                  </a>
-                ) : (
-                  <Link
-                    className="headerMenuLink"
-                    to="/#security"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Security
-                  </Link>
-                )}
+                </Link>
+                <Link
+                  className="headerMenuLink"
+                  href={sectionLink('security', isHome)}
+                  prefetch
+                  onPointerDown={closeMenu}
+                  onClick={closeMenu}
+                >
+                  Security
+                </Link>
 
                 <Link
                   className="headerMenuCta"
-                  to="/contact"
-                  onClick={() => setMenuOpen(false)}
+                  href="/contact"
+                  prefetch
+                  onPointerDown={closeMenu}
+                  onClick={closeMenu}
                 >
                   Contact us
                 </Link>
@@ -135,82 +144,67 @@ export function Header() {
     <>
       <header className="header">
         <div className="container headerInner">
-        <Link className="brand" to="/" aria-label="SeqoraVault home">
-          <span className="logoCutout" aria-hidden="true">
-            <span className="logoBlueDot" />
-            <img className="logoImg" src={logo} alt="" />
-          </span>
-          <span className="brandName">SeqoraVault</span>
-        </Link>
-
-        <nav className="nav" aria-label="Primary">
-          {!isHome ? (
-            <Link className="navLink" to="/">
-              Home
-            </Link>
-          ) : null}
-          {isHome ? (
-            <a className="navLink" href="#features">
-              Features
-            </a>
-          ) : (
-            <Link className="navLink" to="/#features">
-              Features
-            </Link>
-          )}
-          {isHome ? (
-            <a className="navLink" href="#vaults">
-              Vaults
-            </a>
-          ) : (
-            <Link className="navLink" to="/#vaults">
-              Vaults
-            </Link>
-          )}
-          <NavLink
-            to="/pricing"
-            className={({ isActive }) =>
-              `navLink${isActive ? ' navLink--active' : ''}`
-            }
-          >
-            Pricing
-          </NavLink>
-          {isHome ? (
-            <a className="navLink" href="#security">
-              Security
-            </a>
-          ) : (
-            <Link className="navLink" to="/#security">
-              Security
-            </Link>
-          )}
-        </nav>
-
-        <div className="headerEnd">
-          <button
-            type="button"
-            className="headerMenuBtn"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            aria-controls={menuId}
-            onClick={() => setMenuOpen((o) => !o)}
-          >
-            {menuOpen ? <X size={22} strokeWidth={2.2} /> : <Menu size={22} strokeWidth={2.2} />}
-          </button>
-          <Link
-            className="btn btnGhost headerContactBtn"
-            to="/contact"
-            onClick={() => setMenuOpen(false)}
-          >
-            Contact us
+          <Link className="brand" href="/" aria-label="SeqoraVault home">
+            <span className="logoCutout" aria-hidden="true">
+              <span className="logoBlueDot" />
+              <img className="logoImg" src={typeof logo === 'string' ? logo : logo.src} alt="" />
+            </span>
+            <span className="brandName">SeqoraVault</span>
           </Link>
+
+          <nav className="nav" aria-label="Primary">
+            {!isHome ? (
+              <Link className="navLink" href="/" prefetch>
+                Home
+              </Link>
+            ) : null}
+            <Link className="navLink" href={sectionLink('features', isHome)} prefetch>
+              Features
+            </Link>
+            <Link className="navLink" href={sectionLink('vaults', isHome)} prefetch>
+              Vaults
+            </Link>
+            <Link
+              className={`navLink${pathname === '/pricing' ? ' navLink--active' : ''}`}
+              href="/pricing"
+              prefetch
+            >
+              Pricing
+            </Link>
+            <Link className="navLink" href={sectionLink('security', isHome)} prefetch>
+              Security
+            </Link>
+          </nav>
+
+          <div className="headerEnd">
+            <button
+              type="button"
+              className="headerMenuBtn"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              aria-controls={menuId}
+              onClick={() => setMenuOpen((o) => !o)}
+            >
+              {menuOpen ? <X size={22} strokeWidth={2.2} /> : <Menu size={22} strokeWidth={2.2} />}
+            </button>
+            <Link
+              className="btn btnGhost headerContactBtn"
+              href="/contact"
+              prefetch
+              onPointerDown={closeMenu}
+              onClick={closeMenu}
+            >
+              Contact us
+            </Link>
+          </div>
         </div>
-      </div>
       </header>
       <Link
         className="headerInfoBar"
-        to="/contact"
-        onClick={() => setMenuOpen(false)}
+        href="/contact"
+        prefetch
+        onPointerDown={closeMenu}
+        onClick={closeMenu}
         aria-label="Coming soon — join waiting list"
       >
         <span className="headerInfoBarInner">

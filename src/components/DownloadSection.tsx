@@ -1,8 +1,14 @@
+'use client'
+
+import type { StaticImageData } from 'next/image'
 import { useId } from 'react'
 import './DownloadSection.css'
-import defaultMockup from '../assets/download-phone-mockup.svg'
-import defaultApple from '../assets/icon-apple.png'
-import defaultPlay from '../assets/icon-play.png'
+import defaultMockup from '@/assets/download-phone-mockup.svg'
+import defaultApple from '@/assets/icon-apple.png'
+import defaultPlay from '@/assets/icon-play.png'
+import { DownloadAppButtonWithQr } from '@/components/DownloadAppButtonWithQr'
+import { assetUrl } from '@/lib/assetUrl'
+import { getDownloadQrTarget } from '@/lib/site'
 
 export type DownloadSectionProps = {
   /** Root `id` for in-page links (e.g. `#contact`). */
@@ -11,10 +17,12 @@ export type DownloadSectionProps = {
   subheading?: string
   downloadHref?: string
   downloadLabel?: string
-  mockupSrc?: string
+  mockupSrc?: string | StaticImageData
   mockupAlt?: string
-  appleIconSrc?: string
-  playIconSrc?: string
+  appleIconSrc?: string | StaticImageData
+  playIconSrc?: string | StaticImageData
+  /** URL encoded in the desktop QR (defaults from `NEXT_PUBLIC_DOWNLOAD_QR_URL` or site + `#contact`). */
+  downloadQrUrl?: string
 }
 
 export function DownloadSection({
@@ -28,6 +36,7 @@ export function DownloadSection({
   mockupAlt = 'SeqoraVault mobile app preview on a smartphone',
   appleIconSrc = defaultApple,
   playIconSrc = defaultPlay,
+  downloadQrUrl = getDownloadQrTarget(),
 }: DownloadSectionProps) {
   const rawId = useId()
   const svgId = `dl-${rawId.replace(/:/g, '')}`
@@ -100,22 +109,26 @@ export function DownloadSection({
         </h2>
         <p className="downloadSubtitle">{subheading}</p>
 
-        <a className="downloadStoreBtn" href={downloadHref}>
+        <DownloadAppButtonWithQr
+          className="downloadStoreBtn"
+          href={downloadHref}
+          qrValue={downloadQrUrl}
+        >
           <span className="downloadStoreIcons" aria-hidden="true">
-            <img className="downloadStoreIcon" src={appleIconSrc} alt="" />
+            <img className="downloadStoreIcon" src={assetUrl(appleIconSrc)} alt="" />
             <img
               className="downloadStoreIcon downloadStoreIconPlay"
-              src={playIconSrc}
+              src={assetUrl(playIconSrc)}
               alt=""
             />
           </span>
           <span className="downloadStoreText">{downloadLabel}</span>
-        </a>
+        </DownloadAppButtonWithQr>
 
         <div className="downloadMockupStage">
           <img
             className="downloadMockupImg"
-            src={mockupSrc}
+            src={assetUrl(mockupSrc)}
             alt={mockupAlt}
             width={1200}
             height={1200}

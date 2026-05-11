@@ -1,28 +1,29 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { DownloadSection } from '../components/DownloadSection'
-import { usePreloaderReady } from '../components/Preloader'
-import { FaqSection } from '../components/FaqSection'
-import { Footer } from '../components/Footer'
-import { Header } from '../components/Header'
-import '../App.css'
-import laurel1 from '../assets/laurel-1.png'
-import laurelRight from '../assets/laurel-right.png'
-import shieldCheck from '../assets/shield-check.png'
-import shieldLock from '../assets/shield-lock.png'
-import appleIcon from '../assets/icon-apple.png'
-import playIcon from '../assets/icon-play.png'
-import legacyShadow from '../assets/legacy-shadow.png'
-import dotsSquare from '../assets/dots-square.png'
-import vaultSectionBg from '../assets/vault-section-bg.png'
-import vaultSlideFinancial from '../assets/vault-financial.svg'
-import vaultSlideRealestate from '../assets/vault-slide-realestate.svg'
-import vaultSlideWishes from '../assets/vault-slide-wishes.svg'
-import vaultSlideIdentity from '../assets/vault-slide-identity.svg'
-import vaultSlideHealth from '../assets/vault-slide-health.svg'
-import vaultSlideBusiness from '../assets/vault-slide-business.svg'
-import securityVisualEncryption from '../assets/security-visual-encryption.png'
-import securityVisualZeroKnowledge from '../assets/security-visual-zero-knowledge.png'
-import securityVisualNoPasswords from '../assets/security-visual-no-passwords.png'
+import { DownloadSection } from '@/components/DownloadSection'
+import { usePreloaderReady } from '@/components/Preloader'
+import { FaqSection } from '@/components/FaqSection'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
+import laurel1 from '@/assets/laurel-1.png'
+import laurelRight from '@/assets/laurel-right.png'
+import shieldCheck from '@/assets/shield-check.png'
+import shieldLock from '@/assets/shield-lock.png'
+import appleIcon from '@/assets/icon-apple.png'
+import playIcon from '@/assets/icon-play.png'
+import legacyShadow from '@/assets/legacy-shadow.png'
+import dotsSquare from '@/assets/dots-square.png'
+import vaultSectionBg from '@/assets/vault-section-bg.png'
+import vaultSlideFinancial from '@/assets/vault-financial.svg'
+import vaultSlideRealestate from '@/assets/vault-slide-realestate.svg'
+import vaultSlideWishes from '@/assets/vault-slide-wishes.svg'
+import vaultSlideIdentity from '@/assets/vault-slide-identity.svg'
+import vaultSlideHealth from '@/assets/vault-slide-health.svg'
+import vaultSlideBusiness from '@/assets/vault-slide-business.svg'
+import securityVisualEncryption from '@/assets/security-visual-encryption.png'
+import securityVisualZeroKnowledge from '@/assets/security-visual-zero-knowledge.png'
+import securityVisualNoPasswords from '@/assets/security-visual-no-passwords.png'
 import {
   BedDouble,
   ChevronRight,
@@ -31,6 +32,9 @@ import {
   Sprout,
   User,
 } from 'lucide-react'
+import { DownloadAppButtonWithQr } from '@/components/DownloadAppButtonWithQr'
+import { assetUrl } from '@/lib/assetUrl'
+import { getDownloadQrTarget } from '@/lib/site'
 
 const VAULT_SLIDES = [
   {
@@ -76,6 +80,7 @@ const VAULT_AUTO_ADVANCE_MS = 5000
 export function LandingPage() {
   const ready = usePreloaderReady()
   const [vaultStep, setVaultStep] = useState(0)
+  const downloadQrTarget = getDownloadQrTarget()
 
   useEffect(() => {
     const reducedMotion =
@@ -83,7 +88,7 @@ export function LandingPage() {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reducedMotion) return
 
-    let intervalId: ReturnType<typeof setInterval> | null = null
+    let intervalId: number | null = null
 
     const clearVaultInterval = () => {
       if (intervalId !== null) {
@@ -111,7 +116,7 @@ export function LandingPage() {
       document.removeEventListener('visibilitychange', onVisibility)
       clearVaultInterval()
     }
-  }, [vaultStep])
+  }, [])
 
   return (
     <div className={`page ${ready ? 'page--visible' : ''}`}>
@@ -133,20 +138,24 @@ export function LandingPage() {
               access them when it matters most.
             </p>
 
-            <a className="storeBtn" href="#contact">
+            <DownloadAppButtonWithQr
+              className="storeBtn"
+              href="#contact"
+              qrValue={downloadQrTarget}
+            >
               <span className="storeIcons" aria-hidden="true">
-                <img className="storeIcon" src={appleIcon} alt="" />
-                <img className="storeIcon storeIconPlay" src={playIcon} alt="" />
+                <img className="storeIcon" src={assetUrl(appleIcon)} alt="" />
+                <img className="storeIcon storeIconPlay" src={assetUrl(playIcon)} alt="" />
               </span>
               <span className="storeText">Download app</span>
-            </a>
+            </DownloadAppButtonWithQr>
 
             <div className="heroAwards" aria-label="Trust badges">
               <div className="award">
                 <div className="awardIcon" aria-hidden="true">
-                  <img className="awardLaurel awardLaurelLeft" src={laurel1} alt="" />
+                  <img className="awardLaurel awardLaurelLeft" src={assetUrl(laurel1)} alt="" />
                   <div className="awardCenter">
-                    <img className="awardShield" src={shieldCheck} alt="" />
+                    <img className="awardShield" src={assetUrl(shieldCheck)} alt="" />
                     <div className="awardText">
                       Zero-knowledge
                       <br />
@@ -155,16 +164,16 @@ export function LandingPage() {
                   </div>
                   <img
                     className="awardLaurel awardLaurelRight"
-                    src={laurelRight}
+                    src={assetUrl(laurelRight)}
                     alt=""
                   />
                 </div>
               </div>
               <div className="award">
                 <div className="awardIcon" aria-hidden="true">
-                  <img className="awardLaurel awardLaurelLeft" src={laurel1} alt="" />
+                  <img className="awardLaurel awardLaurelLeft" src={assetUrl(laurel1)} alt="" />
                   <div className="awardCenter">
-                    <img className="awardShield" src={shieldLock} alt="" />
+                    <img className="awardShield" src={assetUrl(shieldLock)} alt="" />
                     <div className="awardText">
                       Security-first
                       <br />
@@ -173,7 +182,7 @@ export function LandingPage() {
                   </div>
                   <img
                     className="awardLaurel awardLaurelRight"
-                    src={laurelRight}
+                    src={assetUrl(laurelRight)}
                     alt=""
                   />
                 </div>
@@ -204,13 +213,13 @@ export function LandingPage() {
 
                 <div className="legacyCardBottom">
                   <div className="legacyDotsBadge" aria-hidden="true">
-                    <img className="legacyDots" src={dotsSquare} alt="" />
+                    <img className="legacyDots" src={assetUrl(dotsSquare)} alt="" />
                   </div>
                 </div>
               </div>
 
               <div className="legacyImageCard" aria-hidden="true">
-                <img className="legacyImage" src={legacyShadow} alt="" />
+                <img className="legacyImage" src={assetUrl(legacyShadow)} alt="" />
               </div>
             </div>
           </div>
@@ -399,7 +408,7 @@ export function LandingPage() {
         <section id="vaults" className="section sectionVaults">
           <div
             className="vaultSectionGrain"
-            style={{ backgroundImage: `url(${vaultSectionBg})` }}
+            style={{ backgroundImage: `url(${assetUrl(vaultSectionBg)})` }}
             aria-hidden="true"
           />
           <div className="container">
@@ -451,7 +460,7 @@ export function LandingPage() {
                         ? 'vaultShowcaseImg vaultShowcaseImgActive'
                         : 'vaultShowcaseImg'
                     }
-                    src={slide.image}
+                    src={assetUrl(slide.image)}
                     alt={vaultStep === index ? slide.title : ''}
                     aria-hidden={vaultStep !== index}
                     loading="eager"
@@ -483,7 +492,7 @@ export function LandingPage() {
                 <div className="securityCardVisual">
                   <img
                     className="securityCardArt"
-                    src={securityVisualEncryption}
+                    src={assetUrl(securityVisualEncryption)}
                     alt=""
                     width={856}
                     height={992}
@@ -504,7 +513,7 @@ export function LandingPage() {
                 <div className="securityCardVisual">
                   <img
                     className="securityCardArt"
-                    src={securityVisualZeroKnowledge}
+                    src={assetUrl(securityVisualZeroKnowledge)}
                     alt=""
                     width={856}
                     height={972}
@@ -527,7 +536,7 @@ export function LandingPage() {
                 <div className="securityCardVisual">
                   <img
                     className="securityCardArt"
-                    src={securityVisualNoPasswords}
+                    src={assetUrl(securityVisualNoPasswords)}
                     alt=""
                     width={856}
                     height={972}

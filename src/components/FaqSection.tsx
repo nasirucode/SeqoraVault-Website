@@ -1,5 +1,7 @@
+'use client'
+
 import { useId, useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ChevronDown } from 'lucide-react'
 import './FaqSection.css'
 
@@ -133,7 +135,7 @@ export function FaqSection({
           <h3 className="faqCtaTitle">{ctaHeading}</h3>
           <p className="faqCtaSubtitle">{ctaSubheading}</p>
           {contactIsAppRoute ? (
-            <Link className="btn btnPrimary faqCtaBtn" to={contactHref}>
+            <Link className="btn btnPrimary faqCtaBtn" href={contactHref}>
               {contactLabel}
             </Link>
           ) : (

@@ -1,0 +1,132 @@
+:root {
+  --bg: #ffffff;
+  --surface: rgba(255, 255, 255, 0.82);
+  --text: #5b6474;
+  --text-strong: #2d3250;
+  --border: rgba(16, 24, 40, 0.12);
+  --shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
+
+  --brand: #2d3250;
+  --brand-2: #2d3250;
+  --gold: #d2ad49;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  --container: 1120px;
+
+  font-family: var(--font-body, ui-sans-serif), system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+.errorShell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+  background:
+    radial-gradient(900px 500px at 50% -40px, rgba(210, 173, 73, 0.16), transparent 62%),
+    radial-gradient(700px 420px at 80% 140px, rgba(31, 42, 68, 0.1), transparent 55%),
+    #fff;
+}
+
+.errorCard {
+  width: min(440px, 100%);
+  padding: 32px 28px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.errorTitle {
+  margin: 0;
+  font-family: var(--font-heading, ui-sans-serif), system-ui;
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-strong);
+}
+
+.errorText {
+  margin: 12px 0 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(16, 24, 40, 0.56);
+}
+
+.errorActions {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.errorBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-family: var(--font-heading, ui-sans-serif), system-ui;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid rgba(31, 42, 68, 0.18);
+  background: linear-gradient(180deg, var(--brand), var(--brand-2));
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(31, 42, 68, 0.18);
+}
+
+.errorBtnSecondary {
+  background: #fff;
+  color: var(--text-strong);
+  border-color: rgba(16, 24, 40, 0.14);
+  box-shadow: 0 8px 18px rgba(16, 24, 40, 0.06);
+}
+
+.errorCode {
+  margin-top: 16px;
+  font-size: 12px;
+  color: rgba(16, 24, 40, 0.42);
+  word-break: break-all;
+}

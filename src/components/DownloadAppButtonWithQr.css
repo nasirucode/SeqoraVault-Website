@@ -1,0 +1,91 @@
+.downloadQrModal {
+  z-index: 10100;
+  margin: auto;
+  padding: 0;
+  max-width: calc(100vw - 28px);
+  width: min(300px, 100%);
+  border: none;
+  border-radius: 20px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.downloadQrModal::backdrop {
+  background: rgba(16, 24, 40, 0.38);
+  backdrop-filter: blur(5px);
+}
+
+.downloadQrModalPanel {
+  padding: 18px 18px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(45, 50, 80, 0.12);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 241, 232, 0.96) 100%);
+  box-shadow: 0 22px 50px rgba(16, 24, 40, 0.18);
+}
+
+.downloadQrModalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.downloadQrModalTitle {
+  margin: 0;
+  font-family: var(--font-heading, ui-sans-serif), system-ui;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-strong, #2d3250);
+}
+
+.downloadQrModalClose {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin: -6px -6px 0 0;
+  border: none;
+  border-radius: 11px;
+  background: rgba(45, 50, 80, 0.06);
+  color: rgba(45, 50, 80, 0.55);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.downloadQrModalClose:hover {
+  background: rgba(45, 50, 80, 0.1);
+  color: var(--text-strong, #2d3250);
+}
+
+.downloadQrModalClose:focus-visible {
+  outline: 2px solid rgba(45, 50, 80, 0.45);
+  outline-offset: 2px;
+}
+
+.downloadQrModalBody {
+  display: flex;
+  justify-content: center;
+}
+
+.downloadQrModalBody .downloadQrPanel {
+  gap: 0;
+}
+
+.downloadQrModalHint {
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: center;
+  color: rgba(45, 50, 80, 0.48);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .downloadQrModal::backdrop {
+    backdrop-filter: none;
+  }
+}
