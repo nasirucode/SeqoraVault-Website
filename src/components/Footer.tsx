@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { resetCookieConsentPreference } from '@/lib/cookieConsent'
 import { isHomePath, sectionLink } from '@/lib/site'
-import logo from '@/assets/seqoravault-logo.svg'
+import logo from '@/assets/seqoravault-logo.png'
 
 /** Site-wide footer — use on every page with `<Footer />`. */
 export function Footer() {

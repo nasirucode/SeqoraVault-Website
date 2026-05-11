@@ -131,6 +131,7 @@
 .preloaderLogoWrap .logoImg {
   width: 21px;
   height: 26px;
+  object-fit: contain;
 }
 
 .preloaderLogoWrap .logoBlueDot {

@@ -28,7 +28,7 @@ export function CookieConsent() {
   const pathname = usePathname()
   const [show, setShow] = useState(false)
   const [manageOpen, setManageOpen] = useState(false)
-  const [prefs, setPrefs] = useState<CookieConsentPrefs>(() => defaultCookiePrefs(false))
+  const [prefs, setPrefs] = useState<CookieConsentPrefs>(() => defaultCookiePrefs(true))
 
   useEffect(() => {
     if (!preloaderDone) return
@@ -37,7 +37,7 @@ export function CookieConsent() {
       setShow(visible)
       if (visible) {
         setManageOpen(false)
-        setPrefs(getConsentPreferences() ?? defaultCookiePrefs(false))
+        setPrefs(getConsentPreferences() ?? defaultCookiePrefs(true))
       }
     })
     return () => cancelAnimationFrame(id)
@@ -45,7 +45,7 @@ export function CookieConsent() {
 
   useEffect(() => {
     const onReset = () => {
-      setPrefs(defaultCookiePrefs(false))
+      setPrefs(defaultCookiePrefs(true))
       setManageOpen(false)
       setShow(true)
     }
@@ -89,8 +89,8 @@ export function CookieConsent() {
             Cookie preferences
           </h2>
           <p id="cookie-consent-desc" className="cookieConsentText">
-            Support chat is <strong>on by default</strong> — turn it off under Manage if you prefer.
-            Optional performance monitoring and analytics are off until you enable them. Read our{' '}
+            Optional categories are <strong>on by default</strong> — open Manage to turn any off. Strictly
+            necessary cookies always run. Read our{' '}
             <Link href="/cookies" className="cookieConsentLink">
               Cookie Policy
             </Link>
@@ -128,11 +128,30 @@ export function CookieConsent() {
           >
             <div className="cookieConsentPrefsInner">
               <p className="cookieConsentPrefsLead">
-                Strictly necessary cookies always stay active. Support chat defaults to on — switch it off
-                here if you don&apos;t want the widget.
+                Strictly necessary cookies cannot be switched off. All other categories default to on — adjust
+                below, then save.
               </p>
 
               <div className="cookieConsentToggleList">
+                <div className="cookieConsentToggleRow cookieConsentToggleRow--essential">
+                  <div className="cookieConsentToggleText">
+                    <span className="cookieConsentToggleLabel">Strictly necessary</span>
+                    <span className="cookieConsentToggleDesc">
+                      Security, consent storage, and core site function. Required by law to stay on — not used
+                      for ads or profiling.
+                    </span>
+                  </div>
+                  <div
+                    className="cookieConsentSwitch cookieConsentSwitch--locked"
+                    aria-hidden="true"
+                    title="Always on"
+                  >
+                    <span className="cookieConsentSwitchTrack" data-on="true">
+                      <span className="cookieConsentSwitchThumb" />
+                    </span>
+                  </div>
+                </div>
+
                 <div className="cookieConsentToggleRow">
                   <div className="cookieConsentToggleText">
                     <span className="cookieConsentToggleLabel">Performance &amp; error monitoring</span>

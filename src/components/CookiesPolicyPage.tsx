@@ -26,9 +26,16 @@ export function CookiesPolicyPage() {
             Privacy Statement governs.
           </p>
           <p>
-            This policy applies in the United Kingdom and Nigeria, our initial launch markets. The
-            legal frameworks behind it are the UK Privacy and Electronic Communications Regulations 2003
-            (PECR), UK GDPR, and the Nigeria Data Protection Act 2023.
+            SeqoraVault is a global service, rolling out in sequenced phases. Our Phase 1 launch markets
+            are the United Kingdom and Nigeria, with further markets following on our published expansion
+            roadmap. This policy currently reflects the legal frameworks applicable to those markets —
+            principally the UK Privacy and Electronic Communications Regulations 2003 (PECR), UK GDPR,
+            and the Nigeria Data Protection Act 2023.
+          </p>
+          <p>
+            As we open new markets, we will update this policy to reflect any additional or differing
+            requirements (for example, EU GDPR, the California Privacy Rights Act, or Brazil&apos;s LGPD),
+            and we will notify you of any material change before it takes effect.
           </p>
         </>
       ),
@@ -87,7 +94,7 @@ export function CookiesPolicyPage() {
     {
       id: 'section-03',
       num: '03',
-      title: 'Our commitment — what we will not do',
+      title: 'Our commitment',
       content: (
         <>
           <p>
@@ -121,7 +128,7 @@ export function CookiesPolicyPage() {
     {
       id: 'section-04',
       num: '04',
-      title: 'Cookies we use on our website',
+      title: 'Cookies on our website',
       content: (
         <>
           <p>
@@ -221,7 +228,7 @@ export function CookiesPolicyPage() {
                 </tr>
                 <tr>
                   <td>region</td>
-                  <td>Remembers your country (UK or Nigeria) for content localisation</td>
+                  <td>Remembers your country or region for content localisation</td>
                   <td>SeqoraVault</td>
                   <td>12 months</td>
                 </tr>
@@ -288,9 +295,10 @@ export function CookiesPolicyPage() {
     {
       id: 'section-05',
       num: '05',
-      title: 'Similar technologies in our mobile apps',
+      title: 'Mobile app technologies',
       content: (
         <>
+          <h3>Similar technologies in our mobile apps</h3>
           <p>
             Our iOS and Android apps don&apos;t use browser cookies, but they do use functionally
             equivalent technologies that PECR and UK GDPR treat the same way. Here&apos;s the full list:
@@ -435,7 +443,7 @@ export function CookiesPolicyPage() {
           </ul>
           <p>
             No optional cookies run before you make a choice. You can revisit your preferences at any time
-            using the &quot;Cookie settings&quot; control in the website footer (or the button below).
+            using the &quot;Cookie settings&quot; link in the website footer.
           </p>
           <h3>In plain English</h3>
           <p>
@@ -448,7 +456,7 @@ export function CookiesPolicyPage() {
     {
       id: 'section-08',
       num: '08',
-      title: 'How to manage cookies in your browser',
+      title: 'Managing cookies in your browser',
       content: (
         <>
           <p>
@@ -475,10 +483,9 @@ export function CookiesPolicyPage() {
             we treat it as a withdrawal of consent for optional cookies.
           </p>
           <p>
-            For an independent guide to cookies and how to manage them, the ICO maintains useful guidance
-            at{' '}
+            For an independent guide to cookies and how to manage them, the ICO maintains useful guidance at{' '}
             <a href="https://ico.org.uk/for-the-public/your-data-matters/online/">
-              ico.org.uk/for-the-public/your-data-matters/online/
+              ico.org.uk/your-data-matters/online
             </a>
             .
           </p>
@@ -488,7 +495,7 @@ export function CookiesPolicyPage() {
     {
       id: 'section-09',
       num: '09',
-      title: 'Changes to this Cookie Policy',
+      title: 'Changes to this policy',
       content: (
         <>
           <p>
@@ -500,15 +507,25 @@ export function CookiesPolicyPage() {
             For any material change — such as adding a new category of cookie or a new third-party
             provider — we&apos;ll notify you and re-request consent before the change takes effect.
           </p>
+        </>
+      ),
+    },
+    {
+      id: 'section-10',
+      num: '10',
+      title: 'Contact us',
+      content: (
+        <>
           <p>
-            Questions? Reach us via our <Link href="/contact">contact page</Link>.
+            Questions about this Cookie Policy or your choices? Reach us via our{' '}
+            <Link href="/contact">contact page</Link>.
           </p>
           <button type="button" className="legalPolicyResetBtn" onClick={() => resetCookieConsentPreference()}>
             Open cookie preferences again
           </button>
           <p>
-            After resetting, choose Accept all, Reject optional, or Manage preferences when the banner
-            appears.
+            After resetting, choose <strong>Accept all</strong>, <strong>Reject optional</strong>, or{' '}
+            <strong>Manage preferences</strong> when the banner appears.
           </p>
         </>
       ),
@@ -520,28 +537,28 @@ export function CookiesPolicyPage() {
       badge="Cookie policy"
       titleBefore="Cookies, kept"
       titleHighlight="deliberately short."
-      lead="SeqoraVault Ltd operates in the UK and Nigeria under PECR, UK GDPR, and the Nigeria Data Protection Act 2023. This page explains every cookie and similar technology we use—and what we refuse to use."
+      lead="How SeqoraVault uses cookies and similar technologies on our website and mobile apps — and our public commitment to keeping the list as small as possible."
       shortVersionHeading="What we want you to know first"
       highlights={[
         {
           icon: 'message',
           titleLead: 'We are cookie-light by design.',
-          rest: 'Only what the Services need to function securely, remember real preferences, and—if you opt in—diagnostics and privacy-first analytics.',
+          rest: 'A privacy-first product should not run a heavy tracking stack. Our cookie footprint is intentionally minimal.',
         },
         {
           icon: 'ban',
-          titleLead: 'Zero advertising or marketing cookies.',
-          rest: 'No Meta Pixel, Google Ads, LinkedIn Insight, TikTok Pixel, or cross-site remarketing—ever.',
+          titleLead: 'Zero advertising or marketing cookies. Ever.',
+          rest: 'No Meta Pixel, no Google Ads, no remarketing, no third-party trackers. This is a permanent commitment.',
         },
         {
           icon: 'shield',
-          titleLead: 'Essentials stay on.',
-          rest: 'Strictly necessary cookies operate without consent under PECR; functional preferences keep the experience predictable.',
+          titleLead: 'Essentials are always on.',
+          rest: 'A small set of cookies is needed for the site to work and to keep your session secure. These do not require consent.',
         },
         {
           icon: 'gear',
           titleLead: 'Everything else is optional.',
-          rest: 'Performance and analytics load only after you enable them. Support chat is on by default — you can switch it off in cookie preferences.',
+          rest: 'Analytics and performance cookies only run after you actively consent, and you can withdraw at any time.',
         },
       ]}
       sections={sections}

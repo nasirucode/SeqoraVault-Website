@@ -134,10 +134,27 @@
   animation-delay: 0.04s;
 }
 .cookieConsentPrefs--open .cookieConsentToggleRow:nth-child(2) {
-  animation-delay: 0.1s;
+  animation-delay: 0.08s;
 }
 .cookieConsentPrefs--open .cookieConsentToggleRow:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.cookieConsentPrefs--open .cookieConsentToggleRow:nth-child(4) {
   animation-delay: 0.16s;
+}
+.cookieConsentPrefs--open .cookieConsentToggleRow:nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+.cookieConsentToggleRow--essential {
+  background: rgba(42, 157, 143, 0.06);
+  border-color: rgba(42, 157, 143, 0.22);
+}
+
+.cookieConsentSwitch--locked {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.95;
 }
 
 .cookieConsentToggleText {
@@ -326,6 +343,37 @@
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .cookieConsent {
+    padding: 12px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .cookieConsentCard {
+    padding: 16px 14px;
+    border-radius: 16px;
+  }
+
+  .cookieConsentToggleRow {
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+
+  .cookieConsentSwitch {
+    min-width: 48px;
+    min-height: 44px;
+    align-self: flex-end;
+  }
+
+  .cookieConsentTitle {
+    font-size: 1rem;
+  }
+
+  .cookieConsentText {
+    font-size: 13px;
   }
 }
 

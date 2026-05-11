@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { Ban, Cog, MessageCircle, Shield } from 'lucide-react'
 import { usePreloaderReady } from '@/components/Preloader'
-import logo from '@/assets/seqoravault-logo.svg'
+import logo from '@/assets/seqoravault-logo.png'
 import '@/components/legal/LegalPolicyPages.css'
 
 const iconMap = {

@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { isHomePath, sectionLink } from '@/lib/site'
-import logo from '@/assets/seqoravault-logo.svg'
+import logo from '@/assets/seqoravault-logo.png'
 
 /** Site-wide navigation — use on every page with `<Header />`. */
 export function Header() {
@@ -149,7 +149,19 @@ export function Header() {
               <span className="logoBlueDot" />
               <img className="logoImg" src={typeof logo === 'string' ? logo : logo.src} alt="" />
             </span>
-            <span className="brandName">SeqoraVault</span>
+            <span className="brandText">
+              <span className="brandName">
+                <span className="srOnly">SeqoraVault</span>
+                <span className="brandNameSpread" aria-hidden="true">
+                  {'SeqoraVault'.split('').map((ch, i) => (
+                    <span key={i} className="brandNameLetter">
+                      {ch}
+                    </span>
+                  ))}
+                </span>
+              </span>
+              <span className="brandTagline">your legacy, their certainty</span>
+            </span>
           </Link>
 
           <nav className="nav" aria-label="Primary">

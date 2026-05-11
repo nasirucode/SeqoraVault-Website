@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import logo from '@/assets/seqoravault-logo.svg'
+import logo from '@/assets/seqoravault-logo.png'
 import './Preloader.css'
 
 const BRAND = 'SeqoraVault'

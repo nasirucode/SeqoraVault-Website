@@ -17,12 +17,12 @@ export type CookieConsentPrefs = {
   chat: boolean
 }
 
-/** Accept all / reject optional presets. Chat stays on for “reject optional” unless the user saves otherwise in Manage. */
+/** `true` = all optional categories on; `false` = all optional off (minimal / “reject optional”). */
 export function defaultCookiePrefs(allOptional: boolean): CookieConsentPrefs {
   if (allOptional) {
     return { performance: true, analytics: true, chat: true }
   }
-  return { performance: false, analytics: false, chat: true }
+  return { performance: false, analytics: false, chat: false }
 }
 
 function readRaw(): string | null {
@@ -84,7 +84,7 @@ export function saveConsentPreferences(prefs: CookieConsentPrefs): void {
 export function shouldShowCookieBanner(): boolean {
   const p = getConsentPreferences()
   if (p === null) return true
-  return !p.performance && !p.analytics
+  return !p.performance && !p.analytics && !p.chat
 }
 
 /**
