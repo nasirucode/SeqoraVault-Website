@@ -1,8 +1,9 @@
 'use client'
 
-import { type FormEvent, useEffect, useId, useRef, useState } from 'react'
+import { type FormEvent, useEffect, useId, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Loader2, X } from 'lucide-react'
+import { getDefaultDialCode } from '@/lib/defaultDialCode'
 
 export type CareerApplyModalProps = {
   jobOpeningId: string
@@ -18,6 +19,7 @@ export function CareerApplyModal({ jobOpeningId, jobTitle }: CareerApplyModalPro
   const [open, setOpen] = useState(false)
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const phonePlaceholder = useMemo(() => `${getDefaultDialCode()} …`, [])
 
   useEffect(() => {
     const el = dialogRef.current
@@ -172,7 +174,7 @@ export function CareerApplyModal({ jobOpeningId, jobTitle }: CareerApplyModalPro
                   name="phone_number"
                   type="tel"
                   autoComplete="tel"
-                  placeholder="+44 …"
+                  placeholder={phonePlaceholder}
                   disabled={status === 'submitting'}
                 />
               </label>

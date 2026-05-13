@@ -1259,28 +1259,42 @@
 }
 
 .featCardTemplates {
+  /* Brand blue: #2d3250 with subtle depth in the same hue */
   --feat-bg: radial-gradient(
-      120% 90% at 50% 18%,
-      rgba(124, 58, 237, 0.55),
-      rgba(15, 10, 28, 0.05) 55%
+      105% 85% at 35% -5%,
+      rgba(255, 255, 255, 0.07),
+      rgba(0, 0, 0, 0) 52%
     ),
-    linear-gradient(155deg, #2a0f3d 0%, #0b0714 52%, #12081f 100%);
-  --feat-grain: 0.5;
+    radial-gradient(
+      90% 70% at 100% 100%,
+      rgba(0, 0, 0, 0.22),
+      rgba(0, 0, 0, 0) 55%
+    ),
+    linear-gradient(158deg, #282d45 0%, #2d3250 38%, #2d3250 62%, #262b3c 100%);
+  --feat-grain: 0.38;
 }
 
 .featCardCheckins {
+  /* Dark gold → light gold (brand #d2ad49 family) */
   --feat-bg: radial-gradient(
-      90% 70% at 12% 8%,
-      rgba(45, 212, 191, 0.55),
-      rgba(0, 0, 0, 0) 55%
+      110% 90% at 50% -8%,
+      rgba(244, 232, 200, 0.42),
+      rgba(0, 0, 0, 0) 48%
     ),
     radial-gradient(
-      80% 80% at 92% 88%,
-      rgba(226, 193, 98, 0.65),
-      rgba(0, 0, 0, 0) 60%
+      85% 65% at 8% 100%,
+      rgba(210, 173, 73, 0.18),
+      rgba(0, 0, 0, 0) 52%
     ),
-    linear-gradient(145deg, #1f6f7a 0%, #8a4b1f 48%, #c2872c 100%);
-  --feat-grain: 0.48;
+    linear-gradient(
+      152deg,
+      #1a150c 0%,
+      #2f2612 32%,
+      #4a3a18 58%,
+      #6a5424 82%,
+      #8b6e30 100%
+    );
+  --feat-grain: 0.34;
 }
 
 .featCardNominees {

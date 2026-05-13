@@ -22,7 +22,10 @@ export function Footer() {
                 <span className="logoBlueDot" />
                 <img className="logoImg" src={typeof logo === 'string' ? logo : logo.src} alt="" />
               </span>
-              <span className="brandName">SeqoraVault</span>
+              <span className="brandText">
+                <span className="brandName">SeqoraVault</span>
+                <span className="brandTagline">your legacy, their certainty</span>
+              </span>
             </Link>
 
             <nav className="footerNav" aria-label="Footer">

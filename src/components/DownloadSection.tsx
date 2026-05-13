@@ -27,7 +27,7 @@ export type DownloadSectionProps = {
 
 export function DownloadSection({
   id = 'contact',
-  heading = 'Download Seqoravault',
+  heading = 'Download SeqoraVault',
   subheading =
     'Get started in minutes. Secure your assets, organise everything, and stay in control, wherever you are.',
   downloadHref = '#',

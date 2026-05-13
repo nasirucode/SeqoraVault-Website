@@ -100,6 +100,10 @@
   height: 15px;
 }
 
+.downloadStoreText {
+  color: var(--gold);
+}
+
 .downloadMockupStage {
   margin-top: 36px;
   width: min(720px, 100%);

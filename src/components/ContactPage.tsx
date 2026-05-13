@@ -1,6 +1,6 @@
 'use client'
 
-import { type FormEvent, useState } from 'react'
+import { type FormEvent, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { DownloadSection } from '@/components/DownloadSection'
@@ -8,6 +8,7 @@ import { FaqSection } from '@/components/FaqSection'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { usePreloaderReady } from '@/components/Preloader'
+import { getDefaultDialCode } from '@/lib/defaultDialCode'
 import '@/components/ContactPage.css'
 
 type SubmitStatus = 'idle' | 'loading' | 'success'
@@ -16,6 +17,7 @@ export function ContactPage() {
   const ready = usePreloaderReady()
   const [status, setStatus] = useState<SubmitStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const phonePlaceholder = useMemo(() => `${getDefaultDialCode()} …`, [])
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -152,7 +154,7 @@ export function ContactPage() {
                       name="phone"
                       type="tel"
                       autoComplete="tel"
-                      placeholder="+44 …"
+                      placeholder={phonePlaceholder}
                     />
                   </label>
                   <label className="contactLabel">

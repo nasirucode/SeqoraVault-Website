@@ -126,7 +126,7 @@ export function LandingPage() {
         <section className="hero">
           <div className="container heroStack">
             <h1 className="heroTitle">
-              Everything that matters. Organized,
+              Everything that matters. Organised,
               <br />
               protected, and ready, when it
               <br />
